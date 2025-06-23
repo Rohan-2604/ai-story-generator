@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Story Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">AI Story Generator</h1>
+                <p class="header__tagline">Unleash Your Creativity with AI-Powered Storytelling</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Input Section -->
+                <section class="input-section">
+                    <div class="card">
+                        <div class="card__body">
+                            <h2>Create Your Story</h2>
+                            
+                            <!-- Story Prompt Input -->
+                            <div class="form-group">
+                                <label for="story-prompt" class="form-label">Story Prompt</label>
+                                <textarea 
+                                    id="story-prompt" 
+                                    class="form-control story-prompt-input" 
+                                    placeholder="Enter your story prompt here... (e.g., 'A time traveler visits ancient Egypt')"
+                                    maxlength="500"
+                                    rows="4"
+                                ></textarea>
+                                <div class="character-counter">
+                                    <span id="char-count">0</span>/500 characters
+                                </div>
+                            </div>
+
+                            <!-- Settings Row -->
+                            <div class="settings-row">
+                                <div class="setting-group">
+                                    <label for="genre-select" class="form-label">Genre</label>
+                                    <select id="genre-select" class="form-control">
+                                        <option value="fantasy">Fantasy</option>
+                                        <option value="scifi">Sci-Fi</option>
+                                        <option value="mystery">Mystery</option>
+                                        <option value="romance">Romance</option>
+                                        <option value="adventure">Adventure</option>
+                                        <option value="horror">Horror</option>
+                                        <option value="comedy">Comedy</option>
+                                        <option value="drama">Drama</option>
+                                    </select>
+                                </div>
+
+                                <div class="setting-group">
+                                    <label for="length-select" class="form-label">Story Length</label>
+                                    <select id="length-select" class="form-control">
+                                        <option value="short">Short (100-200 words)</option>
+                                        <option value="medium">Medium (300-500 words)</option>
+                                        <option value="long">Long (600-800 words)</option>
+                                    </select>
+                                </div>
+
+                                <div class="setting-group">
+                                    <label for="style-select" class="form-label">Writing Style</label>
+                                    <select id="style-select" class="form-control">
+                                        <option value="descriptive">Descriptive</option>
+                                        <option value="dialogue-heavy">Dialogue-heavy</option>
+                                        <option value="action-packed">Action-packed</option>
+                                        <option value="atmospheric">Atmospheric</option>
+                                        <option value="humorous">Humorous</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Generate Button -->
+                            <button id="generate-btn" class="btn btn--primary btn--lg btn--full-width generate-btn">
+                                <span class="btn-text">Generate Story</span>
+                                <div class="loading-spinner hidden"></div>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Example Prompts -->
+                <section class="examples-section">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Try These Examples</h3>
+                            <div class="examples-grid">
+                                <button class="example-prompt" data-prompt="A detective discovers their reflection is solving crimes in a mirror world">
+                                    "A detective discovers their reflection is solving crimes in a mirror world"
+                                </button>
+                                <button class="example-prompt" data-prompt="The last librarian on Earth protects books from digital deletion">
+                                    "The last librarian on Earth protects books from digital deletion"
+                                </button>
+                                <button class="example-prompt" data-prompt="A chef's recipes accidentally bring their food to life">
+                                    "A chef's recipes accidentally bring their food to life"
+                                </button>
+                                <button class="example-prompt" data-prompt="Two rival time travelers keep accidentally changing the same historical event">
+                                    "Two rival time travelers keep accidentally changing the same historical event"
+                                </button>
+                                <button class="example-prompt" data-prompt="A person finds a door in their basement that leads to their childhood home">
+                                    "A person finds a door in their basement that leads to their childhood home"
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Output Section -->
+                <section class="output-section hidden" id="output-section">
+                    <div class="card">
+                        <div class="card__body">
+                            <div class="output-header">
+                                <h3>Your Generated Story</h3>
+                                <div class="story-stats">
+                                    <span class="stat" id="word-count">0 words</span>
+                                    <span class="stat" id="reading-time">0 min read</span>
+                                </div>
+                            </div>
+                            
+                            <div class="story-content" id="story-content">
+                                <!-- Generated story will appear here -->
+                            </div>
+
+                            <div class="output-actions">
+                                <button id="copy-btn" class="btn btn--secondary">
+                                    <span class="copy-text">Copy Story</span>
+                                    <span class="copy-success hidden">Copied!</span>
+                                </button>
+                                <button id="save-btn" class="btn btn--outline">Save Story</button>
+                                <button id="generate-another-btn" class="btn btn--primary">Generate Another</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>How to Use</h4>
+                        <ul>
+                            <li>Enter a creative story prompt</li>
+                            <li>Choose your preferred genre and style</li>
+                            <li>Click "Generate Story" to create your tale</li>
+                            <li>Copy, save, or generate variations</li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Tips for Better Stories</h4>
+                        <ul>
+                            <li>Be specific with your prompts</li>
+                            <li>Include interesting characters or settings</li>
+                            <li>Try different genres and styles</li>
+                            <li>Experiment with various story lengths</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
